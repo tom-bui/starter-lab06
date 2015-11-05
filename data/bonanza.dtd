@@ -4,7 +4,7 @@
 -->
 
 <!-- An order identifies the customer, order type, burgers and anything special -->
-<!ELEMENT order (customer, delivery?, burger+, special)>
+<!ELEMENT order (customer, delivery?, burger+, special?)>
 
 <!-- A customer is identified by their name -->
 <!ELEMENT customer (#PCDATA)>
@@ -38,7 +38,7 @@
 >
 
 <!-- The customer can order two cheese (assume one on top, one on bottom) -->
-<!ELEMENT cheeses (EMPTY)>
+<!ELEMENT cheeses EMPTY>
 <!ATTLIST cheeses
     top (american|swiss|jack|blue|gruyere|gouda|aged|goat|brie) #IMPLIED
     bottom (american|swiss|jack|blue|gruyere|gouda|aged|goat|brie) #IMPLIED
@@ -51,7 +51,7 @@
 >
 
 <!-- Sauces are similar to toppings -->
-<!ELEMENT sauce (EMPTY)>
+<!ELEMENT sauce EMPTY>
 <!ATTLIST sauce
     type (ketchup|mustard|mayo|fksauce) #REQUIRED
 >
