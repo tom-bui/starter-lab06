@@ -1,17 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+    Order placement data for some kind of burger place with a long, convoluted name
 -->
 
-<!--
-    TODO define vocabulary identification data
-    PUBLIC ID  : -//vendor//vocabulary//EN
-    SYSTEM ID  : http://server/path/__NAME__
+<!-- An order identifies the customer, order type, burgers and anything special -->
+<!ELEMENT order (customer, delivery?, burger+, special)>
+
+<!-- A customer is identified by their name -->
+<!ELEMENT customer (#PCDATA)>
+
+<!-- An order can be for eat-in, takeout, or delivery, specified by the customer -->
+<!ATTLIST order
+    type (eatin|takeout|delivery) #REQUIRED
+>
+
+<!-- An order to be delivered will need delivery instructions -->
+<!ELEMENT delivery (#PCDATA)>
+
+<!-- Special instructions for the order -->
+<!ELEMENT special (#PCDATA)>
+
+<!-- The burgers will be specified individually
+    Burger customization:
+        - 1 of 5 patty types
+        - up to two cheeses
+        - any number of toppings
+        - any number of sauces
+        - special instructions
+        - an optional name, should the customer wish to propose this as a menu item
 -->
+<!ELEMENT burger (patty, cheeses, topping*, sauce*, instructions?, name?)>
 
-<!-- TODO define your own vocabulary/syntax. Example follows:  -->
-<!ELEMENT __ROOT__ ANY>
-<!ATTLIST __ROOT__ version CDATA #REQUIRED>
+<!-- A patty can be one of five types (assume beef) -->
+<!ELEMENT patty (#PCDATA)>
+<!ATTLIST patty
+    type (beef|pork|turkey|bison|vege) "beef"
+>
 
+<!-- The customer can order two cheese (assume one on top, one on bottom) -->
+<!ELEMENT cheeses (EMPTY)>
+<!ATTLIST cheeses
+    top (american|swiss|jack|blue|gruyere|gouda|aged|goat|brie) #IMPLIED
+    bottom (american|swiss|jack|blue|gruyere|gouda|aged|goat|brie) #IMPLIED
+>
+
+<!-- Toppings are handled individually -->
+<!ELEMENT topping (#PCDATA)>
+<!ATTLIST topping
+    type (lettuce|tomato|raw|dill|roasted|shrooms|salsa|bacon|chilies|fkchili|avocado|egg|porkbelly) #REQUIRED
+>
+
+<!-- Sauces are similar to toppings -->
+<!ELEMENT sauce (EMPTY)>
+<!ATTLIST sauce
+    type (ketchup|mustard|mayo|fksauce) #REQUIRED
+>
+
+<!-- Instructions can be literally anything -->
+<!ELEMENT instructions (#PCDATA)>
+
+<!-- A name can be anything -->
+<!ELEMENT name (#PCDATA)>
