@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Tom's delicious order for takeout, because he doesn't like eating in fast food restaurants
+-->
+
+<!DOCTYPE order SYSTEM 'bonanza.dtd'>
+
+<order type="takeout">
+    <customer>Tom</customer>
+    <burger>
+        <patty type="beef"/>
+        <cheeses top="american" bottom="american" />
+        <topping type="lettuce" />
+        <topping type="bacon" />
+        <topping type="dill" />
+        <sauce type="ketchup" />
+        <sauce type="mustard" />
+        <instructions>Could you please add peanut butter to this, if possible?</instructions>
+    </burger>
+    <burger>
+        <patty type="turkey"/>
+        <cheeses top="aged" />
+        <topping type="lettuce" />
+        <topping type="tomato" />
+        <topping type="dill" />
+        <sauce type="mustard" />
+        <sauce type="mayo" />
+    </burger>
+</order>
